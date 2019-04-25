@@ -4,12 +4,16 @@ const bodyParser = require('body-parser')
 const layout = require('./views/layout')
 const { db } = require('./models'); 
 const app = express();
+const models = require('./models');
+//plugging in router
+
+
 
 //we've required models folder, but we're only getting the db file from models
-db.authenticate().
-then(() => {
-  console.log('connected to the database');
-})
+
+
+//app.use('wiki', wikiRouter);
+
 
 
 //extended: false prevents us from posting a nested object.
@@ -18,13 +22,37 @@ app.use(express.urlencoded({extended: false}));
 // __dirname refers to wikistack, at least to our understanding
 app.use(express.static(__dirname + "/public"));
 
-app.get("/", (req, res) => {
-    res.send(layout(''));
+
+app.use('/wiki', require('./routes/wiki'));
+//app.use('/user', require('./routes/user'));
+
+// app.get("/", (req, res) => {
+//     res.send(layout(''));
+// })
+
+db.authenticate().
+then(() => {
+  console.log('connected to the database');
 })
 
-//We need to use async along with this await function, but we're not sure how to implement and if this is the right location.
-// await User.sync();
-// await Post.sync();
+// const PORT = 3000;
+
+const init = async () => {
+
+	await models.db.sync({force: true});
+	console.log('it\'s working!')
+
+	// app.listen(PORT, () => {
+ //    	console.log(`App is listening in port ${PORT}`);
+	// })
+
+}
+
+
+
+init();
+
+
 
 const PORT = 3000;
 
