@@ -35,13 +35,8 @@ const Page = db.define('page', {
       }
     }
   });
-  
-// module.exports = {
-//   db
-// };
+
+// const users = User.findAll();
+// console.log(users);
  
-module.exports = { 
-    db,
-    Page, 
-    User 
-};
+module.exports = { db, Page, User};
