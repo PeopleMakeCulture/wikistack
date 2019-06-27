@@ -17,7 +17,7 @@ module.exports = () => layout(html`
       </div>
     </div>
 
-    <div>PLACEHOLDER FOR PAGE CONTENT TEXTAREA FIELD</div>
+    <div>PLACEHOLDER FOR PAGE CONTENT TEXT AREA FIELD</div>
     
     <div>PLACEHOLDER FOR PAGE STATUS INPUT FIELD</div>
 
